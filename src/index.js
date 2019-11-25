@@ -33,6 +33,11 @@ app.on('ready', () => {
 
 function createNewProductWindow(){
     newProductWindow =  new BrowserWindow({
+        webPreferences: {
+
+            nodeIntegration: true
+
+        },
         width: 400,
         height: 330,
         title: 'Add a new product'
@@ -50,7 +55,7 @@ function createNewProductWindow(){
 }
 
 ipcMain.on('product:new', (e, newProduct) => {
-    console.log(newProductWindow)
+    console.log(newProduct)
 })
 
 const templateMenu = [
