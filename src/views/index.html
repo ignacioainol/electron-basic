@@ -51,6 +51,9 @@
             });
         });
 
+        ipcRenderer.on('products:remove-all', (e) => {
+            products.innerHTML = "";
+        })
          
     </script>
     
