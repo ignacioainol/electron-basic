@@ -14,7 +14,7 @@ let newProductWindow
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         webPreferences: {
-            nodeIntegration: false
+            nodeIntegration: true
         }
     });
     mainWindow.loadURL(url.format({
@@ -34,9 +34,7 @@ app.on('ready', () => {
 function createNewProductWindow(){
     newProductWindow =  new BrowserWindow({
         webPreferences: {
-
             nodeIntegration: true
-
         },
         width: 400,
         height: 330,
@@ -55,7 +53,8 @@ function createNewProductWindow(){
 }
 
 ipcMain.on('product:new', (e, newProduct) => {
-    console.log(newProduct)
+    mainWindow.webContents.send('product:new', newProduct);
+    newProductWindow.close();
 })
 
 const templateMenu = [
